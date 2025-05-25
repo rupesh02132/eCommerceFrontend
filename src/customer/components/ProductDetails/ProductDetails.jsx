@@ -12,7 +12,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import HomeSectionCard from "../HomeSectionCard/HomeSectionCard";
 import { use } from "react";
 import { useDispatch } from "react-redux";
-import { findProductById} from "../../../State/Product/Action";
+import {findProductById} from "../../../State/product/Action";
 import {useEffect} from "react"
 import { useSelector } from "react-redux";
 // import { useParams } from "react-router-dom";
