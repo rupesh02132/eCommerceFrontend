@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { useDispatch } from "react-redux";
-import { createProduct } from "../../State/Product/Action";
+import { createProduct } from "../../State/product/Action";
 import {
   Button,
   FormControl,
