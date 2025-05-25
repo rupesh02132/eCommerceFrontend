@@ -6,16 +6,16 @@ import { Grid, LinearProgress, Box } from "@mui/material";
 import { Radio, RadioGroup } from "@headlessui/react";
 
 import ReviewCard from "./ReviewCard";
-
+import { addItemToCart } from "../../../State/Cart/Action";
 import { useNavigate, useParams } from "react-router-dom";
 import HomeSectionCard from "../HomeSectionCard/HomeSectionCard";
 
 import { useDispatch } from "react-redux";
-import { findProductById } from "../../State/product/Action"
+import { findProductById } from "../../../State/product/Action";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import { addItemToCart } from "../../../State/Cart/Action";
+
 
 const product = {
   name: "Basic Tee 6-Pack",
