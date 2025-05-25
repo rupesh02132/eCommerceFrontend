@@ -1,24 +1,23 @@
 import { useState } from "react";
 import Rating from "@mui/material/Rating";
 import Button from "@mui/material/Button";
-import { Grid, LinearProgress,Box } from "@mui/material";
+import { Grid, LinearProgress, Box } from "@mui/material";
 
 import { Radio, RadioGroup } from "@headlessui/react";
-import * as React from "react";
+
 import ReviewCard from "./ReviewCard";
-import { Mens_Shirt } from "../../../Data/Mens_Shirt";
-// import ProductCard from "../product/ProductCard";
+
 import { useNavigate, useParams } from "react-router-dom";
 import HomeSectionCard from "../HomeSectionCard/HomeSectionCard";
-import { use } from "react";
+
 import { useDispatch } from "react-redux";
-import {findProductById} from "../../../State/product/Action";
-import {useEffect} from "react"
+import { findProductById } from "../../../State/product/Action";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
-// import { useParams } from "react-router-dom";
+
 import { addItemToCart } from "../../../State/Cart/Action";
 
-const product= {
+const product = {
   name: "Basic Tee 6-Pack",
   price: "$192",
   href: "#",
@@ -44,7 +43,7 @@ const product= {
       alt: "Model wearing plain white basic tee.",
     },
   ],
- 
+
   sizes: [
     { name: "S", inStock: true },
     { name: "M", inStock: true },
@@ -69,31 +68,30 @@ function classNames(...classes) {
 }
 
 export default function ProductDetails() {
- 
   const { productS, selectedProduct } = useSelector((store) => store);
 
   const [selectedSize, setSelectedSize] = useState("");
   const navigate = useNavigate();
-  const params=useParams();
-  const dispatch=useDispatch();
+  const params = useParams();
+  const dispatch = useDispatch();
   // const {productS}=useSelector(store=>store);
 
-  console.log("params",params.productId);
-  
+  console.log("params", params.productId);
+
   const handleAddToCart = async () => {
     if (!selectedSize?.name) {
       console.log("Size not selected");
       return;
     }
-  
+
     const data = {
       productId: params.productId,
       size: selectedSize.name,
-      quantity: 1 
+      quantity: 1,
     };
-  
+
     console.log("Sending to backend:", data);
-  
+
     try {
       await dispatch(addItemToCart(data));
       navigate("/Cart");
@@ -101,8 +99,6 @@ export default function ProductDetails() {
       console.error("Error adding to cart:", err.response?.data || err.message);
     }
   };
-  
-  
 
   useEffect(() => {
     if (params.productId) {
@@ -110,10 +106,10 @@ export default function ProductDetails() {
     }
   }, [params.productId]);
 
-
   const similarProducts = productS?.products?.content?.filter((product) => {
     return (
-      product._id !== params.productId || product.color?.some((color) => selectedProduct?.color?.includes(color))
+      product._id !== params.productId ||
+      product.color?.some((color) => selectedProduct?.color?.includes(color))
     );
   });
 
@@ -198,8 +194,12 @@ export default function ProductDetails() {
               <h2 className="sr-only">Product information</h2>
               <div className="flex space-x-5 items-center text-lg lg:text-xl text-gray-900 mt-3">
                 <p className="font-semibold">₹{productS.product?.price}</p>{" "}
-                <p className="line-through opacity-60">₹{productS.product?.discountedPrice}</p>{" "}
-                <p className="text-green-600">{productS.product?.discountPresent}% off</p>
+                <p className="line-through opacity-60">
+                  ₹{productS.product?.discountedPrice}
+                </p>{" "}
+                <p className="text-green-600">
+                  {productS.product?.discountPresent}% off
+                </p>
               </div>
 
               {/* Reviews */}
@@ -280,7 +280,7 @@ export default function ProductDetails() {
                 </div>
 
                 <Button
-                onClick={handleAddToCart}
+                  onClick={handleAddToCart}
                   variant="contained"
                   sx={{ px: "2rem", py: "1rem", bgcolor: "#9155fd" }}
                 >
@@ -335,7 +335,7 @@ export default function ProductDetails() {
             <Grid container spacing={7}>
               <Grid item xs={7}>
                 <div className="space-y-5">
-                  {[1, 2, 3 ,4,5].map((item) => (
+                  {[1, 2, 3, 4, 5].map((item) => (
                     <ReviewCard />
                   ))}
                 </div>
@@ -347,34 +347,89 @@ export default function ProductDetails() {
                   <p className="text-sm opacity-40"> 5000 Rating</p>
                 </div>
                 <Box className="mt-5 space-y-3">
-                  <Grid container alignItems={"center"} gap={2} >
-                    <Grid item xs={2}><p>Excellent</p></Grid>
+                  <Grid container alignItems={"center"} gap={2}>
+                    <Grid item xs={2}>
+                      <p>Excellent</p>
+                    </Grid>
                     <Grid item xs={7}>
-                    <LinearProgress sx={{bgcolor:"#d0d0d0", borderRadius:"10px",  height:7}}variant="determinate" value={40}color="success"/>
+                      <LinearProgress
+                        sx={{
+                          bgcolor: "#d0d0d0",
+                          borderRadius: "10px",
+                          height: 7,
+                        }}
+                        variant="determinate"
+                        value={40}
+                        color="success"
+                      />
                     </Grid>
                   </Grid>
-                  <Grid container alignItems={"center"} gap={2} >
-                    <Grid item xs={2}><p>Very Good</p></Grid>
+                  <Grid container alignItems={"center"} gap={2}>
+                    <Grid item xs={2}>
+                      <p>Very Good</p>
+                    </Grid>
                     <Grid item xs={7}>
-                    <LinearProgress sx={{bgcolor:"#d0d0d0", borderRadius:"10px",  height:7}}variant="determinate" value={30}color=""/>
+                      <LinearProgress
+                        sx={{
+                          bgcolor: "#d0d0d0",
+                          borderRadius: "10px",
+                          height: 7,
+                        }}
+                        variant="determinate"
+                        value={30}
+                        color=""
+                      />
                     </Grid>
                   </Grid>
-                  <Grid container alignItems={"center"} gap={2} >
-                    <Grid item xs={2}><p>Good</p></Grid>
+                  <Grid container alignItems={"center"} gap={2}>
+                    <Grid item xs={2}>
+                      <p>Good</p>
+                    </Grid>
                     <Grid item xs={7}>
-                    <LinearProgress sx={{bgcolor:"#d0d0d0", borderRadius:"10px",  height:7}}variant="determinate" value={20}color="warning"/>
+                      <LinearProgress
+                        sx={{
+                          bgcolor: "#d0d0d0",
+                          borderRadius: "10px",
+                          height: 7,
+                        }}
+                        variant="determinate"
+                        value={20}
+                        color="warning"
+                      />
                     </Grid>
                   </Grid>
-                  <Grid container alignItems={"center"} gap={2} >
-                    <Grid item xs={2}><p>Average</p></Grid>
+                  <Grid container alignItems={"center"} gap={2}>
+                    <Grid item xs={2}>
+                      <p>Average</p>
+                    </Grid>
                     <Grid item xs={7}>
-                    <LinearProgress sx={{bgcolor:"#d0d0d0", borderRadius:"10px",  height:7}}variant="determinate" value={10}color="success"/>
+                      <LinearProgress
+                        sx={{
+                          bgcolor: "#d0d0d0",
+                          borderRadius: "10px",
+                          height: 7,
+                        }}
+                        variant="determinate"
+                        value={10}
+                        color="success"
+                      />
                     </Grid>
                   </Grid>
-                  <Grid container alignItems={"center"} gap={2} >
-                    <Grid item xs={2}><p>Bad</p></Grid>
+                  <Grid container alignItems={"center"} gap={2}>
+                    <Grid item xs={2}>
+                      <p>Bad</p>
+                    </Grid>
                     <Grid item xs={7}>
-                    <LinearProgress sx={{bgcolor:"#d0d0d0", borderRadius:"10px",  height:7}}variant="determinate" value={5}color="error"/>
+                      <LinearProgress
+                        sx={{
+                          bgcolor: "#d0d0d0",
+                          borderRadius: "10px",
+                          height: 7,
+                        }}
+                        variant="determinate"
+                        value={5}
+                        color="error"
+                      />
                     </Grid>
                   </Grid>
                 </Box>
@@ -383,15 +438,14 @@ export default function ProductDetails() {
           </div>
         </section>
 
-<section className="mt-10 pt-10">
-  <h1 className="py-4 text-lg font-semibold">Similer Product</h1>
-  <div className="flex flex-wrap space-y-5">
-{similarProducts.map((item) => (
-  <HomeSectionCard key={item._id} prop={item} />
-))}
-  </div>
-</section>
-
+        <section className="mt-10 pt-10">
+          <h1 className="py-4 text-lg font-semibold">Similer Product</h1>
+          <div className="flex flex-wrap space-y-5">
+            {similarProducts.map((item) => (
+              <HomeSectionCard key={item._id} prop={item} />
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );
