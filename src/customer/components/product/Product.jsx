@@ -33,7 +33,7 @@ import ProductCard from "./ProductCard";
 import { filters, singleFilter } from "./FilterData";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {findProducts} from "../../../State/Product/Action"
+import {findProducts} from "../../../State/product/Action"
 import { useEffect } from "react";
 import { Pagination } from "@mui/material";
 const sortOptions = [
