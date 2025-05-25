@@ -9,7 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { findProducts } from "../../State/Product/Action";
+import { findProducts } from "../../State/product/Action";
 import { useSelector } from "react-redux";
 import { Avatar, Button, CardHeader } from "@mui/material";
 import Card from "@mui/material/Card";
